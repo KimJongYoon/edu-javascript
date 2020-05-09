@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*객체(1)*/
+        var grades = {'egoing' : 10, 'k8805' : 6, 'sori' : 80};
+        
+        /*객체(2)*/
+        var grades2 = {};
+        grades2['egoing'] = 10;
+        grades2['k8805'] = 6;
+        grades2['sori'] = 80;
+
+        /*for in 문으로 객체를 반복문으로 접근할 수 있다.*/
+        for(key in grades2){
+            console.log(key+":"+grades2[key]);
+        }
+
+        var grades3 = {
+            'list' : {
+                'egoing' : 10, 'k8805' : 6, 'sori' : 80
+            },
+            'show' : function() {console.log(this.list);}
+        }
+
+
+    </script>
+</body>
+</html>

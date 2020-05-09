@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*전역변수*/
+        var vscope = 'global';
+        function fscope(){
+            var vscope = 'local';//지역변수
+            alert(vscope);//local 출력
+        }
+        
+        function fscope2(){
+            alert(vscope);//global 출력
+        }
+        
+        function fscope3(){
+            var vscope = 'local';//지역변수
+            vscope = 'local'
+            alert(vscope);//local 출력
+        }
+        fscope();
+        fscope2();
+        fscope3();
+
+
+        function a (){
+            var i = 0; //결과 01234
+            // i=0; // 결과 무한반복
+        }
+        for(var i = 0; i < 5; i++){
+            a();
+            document.write(i);
+        }
+    </script>
+</body>
+</html>

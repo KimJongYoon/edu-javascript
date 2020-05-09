@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*상속 사용 방법*/
+        function Person(name){
+            this.name = name;
+        }
+
+        //1. 준비(아래 prototype 타입을 쓴다)
+        // Person.prototype.name = null;
+        Person.prototype.name = "Tester";
+        Person.prototype.introduce = function(){
+            return "My name is "+this.name;
+        }
+
+        var p1 = new Person("김종윤");
+        console.log(p1.introduce());
+        
+        console.log("---------------------");
+
+
+        //2. 상속 받을 객체 생성
+        function Programmer(name){
+            this.name = name;
+        }
+        Programmer.prototype = new Person(); //객체 생성
+        Programmer.prototype.coding = function(){
+            return this.name + " Hello World";
+        }
+        
+        // var p2 = new Programmer();
+        var p2 = new Programmer("개발자_김종윤");
+        // console.log(p2.name); 
+        console.log(p2.introduce()); //Person 객체의 introduce 함수 사용 가능
+        console.log(p2.coding());  // Programmer 객체의 coding 함수를 확장하여 사용 가능
+
+        
+
+        /*변수 상속 테스트*/
+        function Ultra(){};
+        Ultra.prototype.ultraProp = true;
+        
+        function Super(){};
+        Super.prototype = new Ultra();
+
+        function Sub(){};
+        Sub.prototype = new Super();
+
+        var sub = new Sub();
+        console.log(sub.ultraProp);
+
+        sub.ultraProp = 1;
+        console.log(sub.ultraProp);
+
+        var ultra = new Ultra();
+        console.log(ultra.ultraProp);
+        
+    </script>
+</body>
+</html>

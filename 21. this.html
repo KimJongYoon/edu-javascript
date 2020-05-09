@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*함수에서의 this*/    
+        function func1(){
+            if(window === this){//여기에서의 this는 상황에따라(실행주체) 달라질 수 있다.
+                console.log("window === this");
+            }else{
+                console.log("window !== this");
+                console.log(this);
+            }
+        }
+        console.log(func1()); // window === this(윈도우 객체에서 실행)
+        console.log(func1.apply({val:1})); // window !== this (따로 정의한 객체에서 실행)
+        console.log(func1.apply(new function(){}));
+        console.log("--------------------------------");
+        
+        /*메소드에서의 this*/
+        var o = {
+            func : function(){
+                if( o === this ){
+                    console.log("o === this");
+                }
+            }
+        }
+        console.log(o.func());
+        console.log("--------------------------------");
+        
+        /*생성자에서의 this*/
+        var funcThis = null;
+        
+        function Func(){
+            funcThis = this;
+        }
+        
+        var o1 = Func(); // new 객체가 없기 때문에 함수로 호출
+        if(funcThis === window) console.log("funcThis === window");
+        
+        var o2 = new Func(); // new 객체가 있기 때문에 객체로 생성
+        if(funcThis === o2) console.log("funcThis === o2");
+
+        console.log("--------------------------------");
+        
+        
+        /*apply와 this*/
+        var o = {};
+        var p = {};
+        function applyCheck(){
+            switch(this){
+                case o : console.log("apply === o"); break;
+                case p : console.log("apply === p"); break;
+                case window : console.log("apply === window"); break;
+            }
+        }
+        applyCheck();
+        applyCheck.apply(o);
+        applyCheck.apply(p);
+        
+        console.log("--------------------------------");
+        
+        </script>
+</body>
+</html>

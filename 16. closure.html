@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*내부 함수에 title이란 변수가 없으면
+            바로 위 단계에 함수에서 변수를 찾는다.
+            */
+           function outter(){//외부함수
+            var title = 'coding everbody';
+            
+            function inner(){//내부 함수
+                console.log(title);
+            }
+            inner();
+        }
+        outter();
+        console.log("-----------------------------");
+        
+        
+        /*
+        내부함수는 외부함수의 지역변수에 접근할 수 있는데
+        외부함수의 실행이 끝나서 외부함수가 소멸된 이후에도 
+        내부 함수가 외부함수의 변수에 접근할 수가 있다.
+        이러한 메커니즘을 클로저라고 한다.
+        */
+       
+       function outter2(){
+           var title = "coding everbody2";
+           return function(){
+               console.log(title);
+            }
+        }
+        
+        var inner = outter2();
+        inner(); // title 변수 값 접근 가능
+        console.log("-----------------------------");
+        
+        
+        /*private variable. 비밀변수*/
+        function factory_movie(title){
+            return {//객체
+                get_title : function() { //메서드(=factory_movie의 내부함수)
+                    return title;   //
+                },
+                set_title : function(_title) {//메서드(=factory_movie의 내부함수)
+                    title = _title;
+                }
+            }
+        }
+        
+        var ghost = factory_movie('Ghost in the shell');
+        var matrix = factory_movie('Matrix');
+
+        console.log(ghost.get_title());
+        ghost.set_title("lalala");
+        console.log(ghost.get_title());
+        
+        console.log("-----------------------------");
+
+        /*closure 사용 시 실수가 많은 부분*/
+        var arr = []; //배열
+        for(var i=0; i<5; i++){
+            arr[i] = function(){
+                return i;
+            }
+        }
+        for(var index in arr){
+            console.log(arr[index]());//5가 5번출력 됨
+        }
+
+        console.log("-----------------------------");
+
+        
+        //의도한대로 동작하도록 변경
+        var arr2 = []; //배열
+        for(var i=0; i<5; i++){
+            arr2[i] = function(_id){//1. 외부함수 추가
+                    return function(){//위에 코드 그대로 내부함수로 만듦
+                        return _id;
+                }
+            }(i);//2. 익명함수로 호출
+        }
+        for(var index in arr2){
+            console.log(arr2[index]());//5가 5번출력 됨
+        }
+        
+    </script>
+</body>
+</html>

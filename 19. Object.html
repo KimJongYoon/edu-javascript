@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Persen(){}
+        var p = new Persen(); // new가 붙으면 Persen()함수를 생성자로 만든다.(객체)
+        p.name = "KJY"
+        p.introduce = function(){
+            return "My name is "+ this.name;
+        }
+
+        console.log(p.introduce());
+
+        console.log("----------------------------");
+        
+        /*초기화를 통해 사용하기*/
+        function Persen2(name){
+            this.name = name;
+            this.introduce = function(){
+                return "My name is " + this.name;
+            }
+        }
+        var p = new Persen2("김종윤");
+        console.log(p.introduce());
+        console.log("----------------------------");
+
+
+    </script>
+</body>
+</html>

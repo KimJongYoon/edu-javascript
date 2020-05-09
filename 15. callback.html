@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var numbers = [20,10,9,8,7,6,5,4,3,2,1];
+        function sortNumber(a,b) {
+            // return a-b; //오름차순
+            return b-a; //내림차순
+        }
+        numbers.sort(sortNumber);
+        // numbers.sort((a,b)=>{return a-b}); //람다 표현식
+        console.log(numbers);
+    </script>    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*정규표현식*/    
+
+        /*캡쳐*/
+        var pattern = /(\w+)\s(\w+)/;//(그룹1) 공백 (그룹2)
+        var str = "coding everbody";
+        var result = str.replace(pattern, "$2, $1");//$1은 (그룹1)을 가리키고 $2는 (그룹2)를 가리킨다
+        console.log(result);
+
+        /*본문 URL을 링크 html 태그로 교체하는 코드*/
+        var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+        var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+        var result = content.replace(urlPattern, function(url){
+            return '<a href="'+url+'">'+url+'</a>';
+        });
+        console.log(result);
+    </script>
+</body>
+</html>

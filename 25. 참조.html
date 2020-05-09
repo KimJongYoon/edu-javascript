@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*복제*/
+        var a = 1;
+        var b = a;
+        b = 2;
+        console.log(a); // a = 1; 
+        
+        console.log("--------------------");
+        
+
+        /*참조*/
+        var a = {'id': 1};
+        var b = a;
+        b.id = 2;
+        console.log(a.id); // a = 2;
+        console.log("--------------------");
+        
+        
+        /*함수에서의 사용*/
+        var a = 1;
+        function func(b){
+            b = 2;
+        }
+        
+        func(a);
+        console.log(a); // a = 1; (값 복제)
+        
+        
+        
+        console.log("--------------------");
+        
+
+        var a1 = {'id' : 1};
+        function func1(b) {
+            b = {'id' : 2}; // 새로운 객체를 만들었기 때문에 b=a의 연결 해제 됨.
+        }
+        
+        func1(a1);
+        console.log(a1.id); // a = 1;
+        
+        console.log("--------------------");
+        
+        
+        var a2 = {'id' : 1};
+        function func2(b) {
+            b.id = 2; // 새로운 객체를 만들었기 때문에 b=a의 연결 해제 됨.
+        }
+        
+        func2(a2);
+        console.log(a2.id); // a = 2; (값 참조)
+
+    </script>
+</body>
+</html>

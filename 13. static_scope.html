@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var i=5; //전역변수
+        
+        function a(){
+            var i = 10; //지역변수
+            console.log("a():"+ i);
+            b();
+
+        }
+
+        function b(){
+            console.log("b():"+i); //전역변수
+        }
+
+        a();//5가 출력 됨. ??????????????
+        
+        /*정리: 사용될 때의 변수가 아니라
+                정의될 때의 변수의 값을 반환(정적유효범위)
+        */
+    </script>
+</body>
+</html>
